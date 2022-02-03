@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import useField from './hooks/index'
 
 import {
   Switch, Route, Link,
@@ -81,6 +82,9 @@ const CreateNew = (props) => {
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
+  const contentField = useField('content')
+  const authorField = useField('author')
+  const urlField = useField('url')
 
 
   const handleSubmit = (e) => {
@@ -99,15 +103,15 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+          <input {...contentField} />
         </div>
         <div>
           author
-          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <input {...authorField} />
         </div>
         <div>
           url for more info
-          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
+          <input {...urlField} />
         </div>
         <button>create</button>
       </form>
